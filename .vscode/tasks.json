@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "task g++",
+            "command": "D:\\mingw64\\bin\\g++.exe", /*bin目录下的g++.exe，两个反斜杠\\*/
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe", /*收纳exe可执行文件*/
+                "-fexec-charset=GBK", /*中文乱码*/
+                "-I",
+                "E:\\biancheng\\biancheng\\c++", /*c/c++项目的文件夹，两个反斜杠\\*/
+                "-std=c++14"
+            ],
+            "options": {
+                "cwd": "D:\\mingw64\\bin" /*bin目录，两个反斜杠\\*/
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+        }
+    ]
+}
