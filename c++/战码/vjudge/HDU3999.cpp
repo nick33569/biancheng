@@ -11,7 +11,6 @@ void buildtree(int t,node *&root){
     else if(t<root->value) buildtree(t,root->l);
     else buildtree(t,root->r);
 }
-
 void preorder(node *root){
     if(root!=NULL){
         printf("%d ",root->value);
@@ -19,7 +18,6 @@ void preorder(node *root){
         preorder(root->r);
     }
 }
-
 void remove_tree(node *root){
     if(root==NULL) return;
     remove_tree(root->l);
