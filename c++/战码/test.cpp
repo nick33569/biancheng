@@ -1,23 +1,40 @@
-// #include<bits/stdc++.h>
-#include<iostream>
-#include<map>
-#include<cstring>
-#include<cstdio>
+#include<bits/stdc++.h>
 using namespace std;
-string s;
-map<string,int> trees;
-int main(){
-	int cnt=0;
-	//ios::sync_with_stdio(false);//优化cin,cout的效率,表示不用缓存,在这题中可以不用
-    while(getline(cin,s)) trees[s]++,cnt++;//把输入的树存进map
-	map<string,int>::iterator it;//遍历map
-	for(it=trees.begin();it!=trees.end();it++){
-		cout<<it->first<<" ";//key 在本题中是树的种类
-    	printf("%.4f\n",it->second*100.0/cnt);//value/cnt 在本题中是对应树种的占比
+
+struct node{
+	int value;
+	node *l,*r;
+	node(int value=value,node *l=NULL,node *r=NULL):value(value),l(l),r(r){};
+}
+void buildtree(int t,node *&root){
+	if(!root) root=new node;
+	else if(t<root->value) buildtree(t,root->l);
+	else buildtree(t,root->r);
+}
+void preorder(node *root){
+	if(root!=NULL){
+		printf("%d ",root->value);
+		preorder(root->l);
+		preorder(root->r);
 	}
-	// for(auto it=trees.begin();it!=trees.end();it++){
-	// 	cout<<it->first<<" ";
-	// 	printf("%.4lf\n",it->second*100.0/cnt);//"\n"的效率
-	// }
+}
+void removetree(node *root){
+	if(!root) return;
+	removetree(root->l);
+	removetree(root->r);
+	delete root;
+}
+int main(){
+	int n,t=0;
+	
+	while(~scanf("%d",&n)){
+		node root=new node;
+		for(int i=0;i<n;i++){
+			cin>>t;
+			buildtree(t,root);
+		}
+		preorder(root);
+		removetree(root);
+	}
     return 0;
 }
