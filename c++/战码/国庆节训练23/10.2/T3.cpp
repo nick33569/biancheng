@@ -5,13 +5,14 @@ bool f[1005][1000005],f2;
 int maxx[1005];
 struct siz{
     int bh,sz;
-}si[1005];
+};
 bool cmp(siz a,siz b){
     return a.sz>b.sz;
 }
 int main(){
     int n,g=1;
     while(cin>>n){
+        siz si[1005];
         if(n==0) break;
         queue<int> q[1005];
         printf("Scenario #%d\n",g);
@@ -21,9 +22,9 @@ int main(){
             for(int i=0;i<a;i++){
                 int x;
                 cin>>x;
-                maxx[i]=max(x,maxx[i]);
-                f[i][x]=true;
-                q[i].push(x);
+                maxx[k]=max(x,maxx[k]);
+                f[k][x]=true;
+                q[k].push(x);
             }
             string s;
             while(~scanf("%s",&s)){

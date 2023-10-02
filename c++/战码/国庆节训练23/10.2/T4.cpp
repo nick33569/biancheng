@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-long long a[50005],b[50005],c[5000005];
+long long a[50005],b[50005],c[2500000005];
 bool cmp(long long a,long long b){
 	return a<b;
 }
