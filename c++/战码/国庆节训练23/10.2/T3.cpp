@@ -17,7 +17,7 @@ int main(){
         queue<int> q[1005];
         printf("Scenario #%d\n",g);
         for(int k=0;k<n;k++){
-            int a;
+            int a;//qwq
             scanf("%d",&a);
             for(int i=0;i<a;i++){
                 int x;
