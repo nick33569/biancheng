@@ -10,8 +10,8 @@ struct node{
 int a[50005],b[50005];
 priority_queue<node,vector<node>,less<node> > pq;
 int main(){
-	// freopen("nsum.in","r",stdin);
-	// freopen("nsum.out","w",stdout);
+	freopen("nsum.in","r",stdin);
+	freopen("nsum.out","w",stdout);
 	ios::sync_with_stdio(false);
 	int n;
 	cin>>n;
