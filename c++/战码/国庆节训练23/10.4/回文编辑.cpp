@@ -25,10 +25,9 @@ int main(){
             dp[i]=1;continue;
         }
         for(int j=i;j;j=i&(j-1)){
-            if((i&j)==j){
-                dp[i]=min(dp[i],dp[j]+dp[i^j]);
-            }
+            dp[i]=min(dp[i],dp[j]+dp[i^j]);
         }
+
     }
     cout<<dp[(1<<n)-1];
     return 0;
