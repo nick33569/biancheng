@@ -10,21 +10,21 @@ int main(){
         for(int j=0;j<n;j++) cin>>g[i][j];
     }
     memset(dp,0x3f,sizeof(dp));
-    for(int i=0;i<n;i++) dp[1<<i][i]=0;
-    for(int i=0;i<(1<<n);i++){//枚举拿到球的集合，即枚举子集
-        for(int j=0;j<n;j++){//球从第j个人传出去，给k
-            if(i&(1<<j)){//第j个人有没有球
-                for(int k=0;k<n;k++){//球传给第k个人
-                    if(j!=k&&(i&(1<<k))){//第k个人没有拿到球，才能把球传给他
+    dp[1][0]=0;
+    for(int i=0;i<(1<<n);i++){
+        for(int j=0;j<n;j++){
+            if(i&(1<<j)){
+                for(int k=0;k<n;k++){
+                    if(j!=k&&(i&(1<<k))){
                         dp[i][j]=min(dp[i][j],dp[i^(1<<j)][k]+g[k][j]);
                     }
                 }
             }
         }
     }
-    int ans=0x7f7f7f7f;
+    int ans=1145141919;
     for(int j=0;j<n;j++){
-        ans=min(ans,dp[(1<<n)-1][j]);
+        ans=min(ans,dp[(1<<n)-1][j]+g[j][0]);
     }    
     cout<<ans;
     return 0;

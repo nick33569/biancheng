@@ -1,25 +1,32 @@
-#include <bits/stdc++.h>
+#include<iostream>
+#include<cstdio>
+#include<cstring>
+#include<map>
 using namespace std;
-long long a[50005],b[50005],c[5000005];
-bool cmp(long long a,long long b){
-	return a<b;
-}
+int n;
+map<int,int> sl;
 int main(){
-	freopen("nsum.in","r",stdin);
-	freopen("nsum.out","w",stdout);
-    int n,cnt=0;
-	cin>>n;
-	for(int i=0;i<n;i++) scanf("%lld",&a[i]);
-	for(int i=0;i<n;i++) scanf("%lld",&b[i]);
-	sort(a,a+n,cmp);
-	sort(b,b+n,cmp);
-	
-	for(int i=0;i<n;i++){
-		for(int j=0;j<n;j++){
-			c[cnt++]=a[i]+b[j];
-		}
-	}
-	sort(c,c+cnt,cmp);
-	for(int i=0;i<n;i++) printf("%lld ",c[i]);
+    ios::sync_with_stdio(false);
+    while(cin>>n){
+        if(n==0) break;
+        sl.clear();
+        sl[1000000000]=1;
+        int id,g;
+        while(n--){
+            cin>>id>>g;
+            sl[g]=id;
+            int ans;
+            map<int,int>::iterator it=sl.find(g);
+            if(it==sl.begin()) ans=((++it)->second);
+            else{
+                map<int,int>::iterator it2=it;
+                it2--,it++;
+                ans=(g-it2->first<=it->first-g)?it2->second:it->second;
+            }
+            cout<<id<<" "<<ans<<endl;
+        }
+        // map<int,int>::iterator it;
+
+    }
     return 0;
 }
