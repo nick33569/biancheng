@@ -1,31 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
-int a[50005],b[50005];
-bool ans[2000000005]={false};
-bool cmp(int a,int b){
-	return a<b;
-}
+const int INF=1<<30;
+int a[105][105];
+int dp[105];
 int main(){
-    int n,b;
-	int maxa=0;
+	int n;
 	cin>>n;
-	for(int i=0;i<n;i++) scanf("%d",&a);
-	for(int i=0;i<n;i++) scanf("%d",&a);
-	sort(a,a+n,cmp);
-	sort(b,b+n,cmp);
-	for(int i=0;i<n;i++){
-		for(int j=0;j<n;j++){
-			int t=a[i]+b[j];
-			ans[t]=true;
-			if(maxa<t) maxa=t;
+	for(int i=1;i<=n;i++){
+		for(int j=1;j<=n;j++){
+			cin>>a[i][j];
 		}
 	}
-	int cnt=0;
-	int c[20];
-	for(int i=0;i<maxa;i++){
-		if(ans[i]==true) c[cnt++]=i;
+	fill(dp+2,dp+n+1,INF);//按类型空间赋初值
+	/*
+	memset(a,INF,sizeof(a));
+	此函数是按字节赋值
+	*/
+	dp[1]=0;
+	for(int i=1;i<=n;i++){
+		for(int j=1;j<=n;j++){
+			if(a[i][j]!=0) dp[j]=min(dp[j],dp[i]+a[i][j]);
+		}
 	}
-	sort(c,c+n,cmp);
-	for(int i=0;i<n;i++) cout<<c[i]<<" ";
+	cout<<dp[n];
     return 0;
 }
