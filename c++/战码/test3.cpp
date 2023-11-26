@@ -7,19 +7,20 @@ int main(){
 	int n;
 	cin>>n;
 	for(int i=1;i<=n;i++){
-		for(int j=1;j<=n;j++){
+		for(int j=1;j<=i;j++){
 			cin>>a[i][j];
-		}
+			a[i-1][j-1]+=max(a[i][j-1],a[i][j]);
+		}	
 	}
-	fill(dp+2,dp+n+1,INF);//按类型空间赋初值
-	/*
-	memset(a,INF,sizeof(a));
-	此函数是按字节赋值
-	*/
-	dp[1]=0;
 	for(int i=1;i<=n;i++){
-		for(int j=1;j<=n;j++){
-			if(a[i][j]!=0) dp[j]=min(dp[j],dp[i]+a[i][j]);
+		for(int j=1;j<=i;j++) cout<<a[i][j]<<" ";
+		cout<<endl;
+	}
+	dp[1]=a[1][1];
+	for(int i=1;i<=n;i++){
+		for(int j=1;i<=j;j++){
+			dp[i]=max(dp[i],dp[i]+(max(a[i+1][j],a[i+1][j+1])));
+			cout<<dp[i]<<endl;
 		}
 	}
 	cout<<dp[n];
